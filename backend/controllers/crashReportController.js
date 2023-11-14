@@ -9,7 +9,7 @@ const getCrashReports = asyncHandler(async(req, res) => {
 })
 
 // @desc Create crash report
-// @route POST /api/goals
+// @route POST /api/
 // @access Private
 const createCrashReport = asyncHandler(async (req, res) => {
 
