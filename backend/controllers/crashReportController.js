@@ -5,7 +5,10 @@ const Report = require('../models/ReportModel')
 // @route GET /api/crashReports
 // @access Private
 const getCrashReports = asyncHandler(async(req, res) => {
-    res.status(200).json({ message: 'Get crash reports' })
+    const report = await Report.find()
+
+    res.status(200).json(report) // get report
+
 })
 
 // @desc Create crash report
@@ -38,7 +41,16 @@ const updateCrashReport = asyncHandler(async (req, res) => {
 // @route DELETE /api/goals/:id
 // @access Private
 const deleteCrashReport = asyncHandler(async (req, res) => {
-    res.status(200).json({ message: `Delete crash report ${req.params.id}` })
+    const report = await Report.findByID(req.params.id)
+
+    if (!report){
+        res.status(400)
+        throw new Error('Report not found')
+    }
+
+    await report.remove()
+
+    res.status(200).json({ id: req.params.id }) // delete the report based on ID
 })
 
 module.exports = {
