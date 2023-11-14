@@ -12,7 +12,7 @@ const getCrashReports = asyncHandler(async(req, res) => {
 })
 
 // @desc Create crash report
-// @route POST /api/goals
+// @route POST /api/
 // @access Private
 const createCrashReport = asyncHandler(async (req, res) => {
 
@@ -42,6 +42,7 @@ const updateCrashReport = asyncHandler(async (req, res) => {
 // @access Private
 const deleteCrashReport = asyncHandler(async (req, res) => {
     const report = await Report.findByID(req.params.id)
+    console.log(report);
 
     if (!report){
         res.status(400)
