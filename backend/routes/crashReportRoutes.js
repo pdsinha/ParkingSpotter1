@@ -7,6 +7,11 @@ const {
     deleteCrashReport
 } = require('../controllers/crashReportController')
 
+const {protect} = require ('../middleware/authMiddleware')
+
+router.route('/').get(protect, getCrashReports).post(protect, createCrashReport)
+router.route('/:id').delete(protect, deleteCrashReport)
+
 
 //These functions' routes could be consolidated/connected, but for later readibility, I will not
 router.get('/', getCrashReports)

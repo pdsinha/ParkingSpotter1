@@ -1,15 +1,25 @@
 
 const asyncHandler = require('express-async-handler')
 const Report = require('../models/ReportModel')
+const User = require('../models/UserModel')
 // @desc Get crash reports
 // @route GET /api/crashReports
 // @access Private
+const getCrashReports = asyncHandler(async(req, res) => {
+    const report = await Report.find({ user: req.user.id })
+
+    res.status(200).json(report) // get report
+
+})
+
+/* maybe use to show all reports
 const getCrashReports = asyncHandler(async(req, res) => {
     const report = await Report.find()
 
     res.status(200).json(report) // get report
 
 })
+*/
 
 // @desc Create crash report
 // @route POST /api/
@@ -23,7 +33,8 @@ const createCrashReport = asyncHandler(async (req, res) => {
     }
 
     const report = await Report.create({
-        location: req.body.location
+        location: req.body.location,
+        user: req.user.id,  // this will require users to be logged in in order to make a report
 
     })
     res.status(200).json(report)    
@@ -47,6 +58,20 @@ const deleteCrashReport = asyncHandler(async (req, res) => {
     if (!report){
         res.status(400)
         throw new Error('Report not found')
+    }
+
+    const user = await User.findByID(req.user.id)
+
+    //check for user
+    if(!user){
+        res.status(401)
+        throw new Error('User not found')
+    }
+
+    // make sure the logged in user matches the report user
+    if(report.user.toString() !== user.id){
+        res.status(401)
+        throw new Error('User not authorized')
     }
 
     await report.remove()
