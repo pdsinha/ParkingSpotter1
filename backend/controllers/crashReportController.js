@@ -42,6 +42,7 @@ const updateCrashReport = asyncHandler(async (req, res) => {
 // @access Private
 const deleteCrashReport = asyncHandler(async (req, res) => {
     const report = await Report.findByID(req.params.id)
+    console.log(report);
 
     if (!report){
         res.status(400)
