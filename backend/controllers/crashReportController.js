@@ -1,6 +1,8 @@
 
 const asyncHandler = require('express-async-handler')
+
 const Report = require('../models/ReportModel')
+
 // @desc Get crash reports
 // @route GET /api/crashReports
 // @access Private
@@ -26,6 +28,7 @@ const createCrashReport = asyncHandler(async (req, res) => {
         location: req.body.location
 
     })
+    console.log(report);
     res.status(200).json(report)    
    
 })
