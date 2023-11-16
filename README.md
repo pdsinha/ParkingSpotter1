@@ -1,7 +1,4 @@
 # ParkingSpotter~
-Prerequisites:
-Installation of NODEJS library
-
 To start the application(backend server): 
 npm run server
 
