@@ -1,12 +1,13 @@
 
 const asyncHandler = require('express-async-handler')
+
 const Report = require('../models/ReportModel')
 const User = require('../models/UserModel')
 // @desc Get crash reports
 // @route GET /api/crashReports
 // @access Private
 const getCrashReports = asyncHandler(async(req, res) => {
-    const report = await Report.find({ user: req.user.id })
+    const report = await Report.find()
 
     res.status(200).json(report) // get report
 
@@ -37,6 +38,7 @@ const createCrashReport = asyncHandler(async (req, res) => {
         user: req.user.id,  // this will require users to be logged in in order to make a report
 
     })
+    console.log(report);
     res.status(200).json(report)    
    
 })
