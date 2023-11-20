@@ -9,7 +9,7 @@ const {
 
 const {protect} = require ('../middleware/authMiddleware')
 
-router.route('/').get(getCrashReports).post(protect, createCrashReport)
+router.route('/').get(getCrashReports).post(createCrashReport)
 router.route('/:id').delete(protect, deleteCrashReport)
 
 
