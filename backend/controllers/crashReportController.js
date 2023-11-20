@@ -29,6 +29,7 @@ const getCrashReports = asyncHandler(async(req, res) => {
 const createCrashReport = asyncHandler(async (req, res) => {
 
     console.log(req.body.location)
+    //Test Case that confirms request parameters are correct for crash reports(Daher)
     if(!req.body.location){
         res.status(400)
         throw new Error('Please add location')
@@ -36,7 +37,6 @@ const createCrashReport = asyncHandler(async (req, res) => {
 
     const report = await Report.create({
         location: req.body.location,
-        // user: req.user.id,  // this will require users to be logged in in order to make a report
 
     })
     console.log(report);
@@ -49,6 +49,8 @@ const createCrashReport = asyncHandler(async (req, res) => {
 // @desc Update crash report
 // @route PUT /api/goals/:id
 // @access Private
+
+
 const updateCrashReport = asyncHandler(async (req, res) => {
     res.status(200).json({ message: `Update crash report ${req.params.id}` })
 })
@@ -56,10 +58,12 @@ const updateCrashReport = asyncHandler(async (req, res) => {
 // @desc Delete crash report
 // @route DELETE /api/goals/:id
 // @access Private
+// Test Case: 
 const deleteCrashReport = asyncHandler(async (req, res) => {
     const report = await Report.findByID(req.params.id)
     console.log(report);
 
+    // Test case: 
     if (!report){
         res.status(400)
         throw new Error('Report not found')
