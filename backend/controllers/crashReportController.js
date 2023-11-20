@@ -19,6 +19,7 @@ const getCrashReports = asyncHandler(async(req, res) => {
 const createCrashReport = asyncHandler(async (req, res) => {
 
     console.log(req.body.location)
+    //Test Case that confirms request parameters are correct for crash reports(Daher)
     if(!req.body.location){
         res.status(400)
         throw new Error('Please add location')
