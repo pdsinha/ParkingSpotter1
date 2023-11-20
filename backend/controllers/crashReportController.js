@@ -59,11 +59,13 @@ const updateCrashReport = asyncHandler(async (req, res) => {
 // @route DELETE /api/goals/:id
 // @access Private
 // Test Case: 
+
 const deleteCrashReport = asyncHandler(async (req, res) => {
     const report = await Report.findByID(req.params.id)
     console.log(report);
 
-    // Test case: 
+    // Test case: If the report that user wants to delete does not exist within the
+    // database, display error message.
     if (!report){
         res.status(400)
         throw new Error('Report not found')
@@ -72,17 +74,22 @@ const deleteCrashReport = asyncHandler(async (req, res) => {
     const user = await User.findByID(req.user.id)
 
     //check for user
+    // Test case: If report is found but the user does not exist within the database,
+    // display user error message
     if(!user){
         res.status(401)
         throw new Error('User not found')
     }
 
     // make sure the logged in user matches the report user
+    // Test case: User can only delete reports created from user.
     if(report.user.toString() !== user.id){
         res.status(401)
         throw new Error('User not authorized')
     }
 
+    // Test case : If all requirements (report is found, user exists, user is  autorized to delete)
+    // are met then it deletes report from database
     await report.remove()
 
     res.status(200).json({ id: req.params.id }) // delete the report based on ID

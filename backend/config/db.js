@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
-
+// Test case: handles the connection to a MongoDB database using Mongoose,
+// should connect to the database successfully
 const connectDB = async () => {
     try{
         const conn = await mongoose.connect(process.env.MONGO_URI)

@@ -18,12 +18,14 @@ const getNotificationMethods = asyncHandler(async(req, res) => {//CASE: VIEW NOT
 // @access Private
 const addNotificationMethod = asyncHandler(async (req, res) => {
 
-
+    
     if(!req.body.location){//CASE: NO NEW NOTIFICATION METHOD SELECTED (Priya)
         res.status(400)
         throw new Error('Please select notification method')
     }
-
+    
+    // Test case: checks if user exits,
+    // should display User already exists'
     const report = await Report.create({//CASE: NEW NOTIFICATION METHOD SELECTED (Priya)
         location: req.body.location,
 
@@ -40,6 +42,8 @@ const deleteNotificationMethod = asyncHandler(async (req, res) => {
     const notification = await Notifications.findByID(req.params.id)
     console.log(notification);
 
+    // Test case: checks if a notification was selected to remove,
+    // should display Notification not selected'
     if (!notification){//CASE: NO NOTIFICATION SELECTED TO REMOVE
         res.status(400)
         throw new Error('Notification not selected')
