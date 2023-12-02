@@ -1,0 +1,37 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(17, 1fr); /* 3 columns */
+    gap: 10px; /* Gap between buttons */
+}
+
+.lot-button {
+    background-color: rgb(219, 209, 209);
+    color: rgb(80, 79, 79);
+    border: 2px solid rgb(128, 126, 126);
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.lot-button:hover {
+    background-color: rgb(248, 132, 103); /* Change this to the color you desire on hover */
+    color: white;
+    border: 2px solid rgb(245, 81, 5);
+}
+
+/* Assign grid areas for each parking lot button */
+.lot-button:nth-child(1) { grid-row:  2; grid-column:  14; padding: 20px; width: 325%} /* A */
+.lot-button:nth-child(2) { grid-row:  3; grid-column:  14; padding: 20px; width: 325%} /* B */
+.lot-button:nth-child(3) { grid-row:  4; grid-column:  15; padding: 15px; width: 250%;} /* C */
+.lot-button:nth-child(4) { grid-row:  5; grid-column:  15; padding: 13px; width: 175%;} /* D */
+.lot-button:nth-child(5) { grid-row:  5; grid-column:  13; padding: 13px; width: 150%;} /* E */
+.lot-button:nth-child(6) { grid-row:  6; grid-column:  10; padding: 10px; width: 110%;} /* F */
+.lot-button:nth-child(7) { grid-row:  4; grid-column:  12; padding: 13px; width: 150%;} /* G */
+.lot-button:nth-child(8) { grid-row:  3; grid-column:  1; padding: 20px; width: 275%;} /* H */
+.lot-button:nth-child(9) { grid-row:  4; grid-column:  1; padding: 10px; width: 175%;} /* I */
+.lot-button:nth-child(10) { grid-row:  6; grid-column:  6; padding: 20px; width: 265%;} /* J */
+.lot-button:nth-child(11) { grid-row:  2; grid-column:  7; padding: 12px; width: 150%;} /* P */
+.lot-button:nth-child(12) { grid-row:  1; grid-column:  1; padding: 25px; width: 350%;} /* T */
+.lot-button:nth-child(13) { grid-row:  10; grid-column:  6; padding: 20px; width: 300%;} /* U */
+/* ... Repeat for other lots as needed */
