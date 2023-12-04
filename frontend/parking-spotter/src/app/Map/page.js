@@ -4,7 +4,7 @@ import './page.css';
 
 export default function MapPage() {
     const lots = ['Lot A', 'Lot B', 'Lot C', 'Lot D', 'Lot E', 
-    'Lot F', 'Lot G', 'Lot H', 'Lot I', 'Lot J', 'Lot P', 'Lot T', 'Lot U'];
+    'Lot G', 'Lot H', 'Lot I', 'Lot J', 'Lot P', 'Lot T', 'Lot U'];
     const [selectedLot, setSelectedLot] = useState('');
 
     const handleLotClick = (lot) => {
@@ -17,7 +17,7 @@ export default function MapPage() {
             <h1 className="text-center text-title text-4xl mb-4">
                 Parking Lots
             </h1>
-            <div className="grid-container">
+            <div className="grid grid-cols-3 gap-6 max-w-lg mx-auto">
                 {lots.map((lot, index) => (
                     <button 
                         key={index} 
