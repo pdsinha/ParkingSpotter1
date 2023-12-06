@@ -109,11 +109,6 @@ export default function LoginPage() {
         <button onClick={handleFormSubmit} type="submit">
           Login
         </button>
-        <div className="my-4 text-center text-gray-500">Or login with provider</div>
-        <button className="flex gap-4 justify-center items-center">
-          <Image src={'/google.png'} alt={'google logo'} width={32} height={32} />
-          Login with Google
-        </button>
       </form>
 
       {/* Display the success message only when login is successful */}

@@ -62,13 +62,6 @@ export default function Registerpage() {
                     onChange={handleEmailChange} />
                 <input type="password" placeholder="password"
                     onChange={e => setPassword(e.target.value)} />
-                <div className="my-4 text-center text-gray-500">
-                    Or login with provider
-                </div>
-                <button className="flex gap-4 justify-center items-center">
-                    <Image src={"/google.png"} alt={"google logo"} width={32} height={32} />
-                    Login with Google
-                </button>
                 <button type="submit">Register</button>
                 {!isEmailValid && <div className="text-red-500">Invalid email address</div>}
                 <div className="text-center my-4 text-gray-500 border-t pt-4">
