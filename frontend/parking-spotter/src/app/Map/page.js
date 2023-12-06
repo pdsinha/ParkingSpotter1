@@ -16,7 +16,7 @@ export default function MapPage() {
 
         
         // Additional logic
-         axios.get("http://localhost:8000/api/crashReports",
+         axios.post("http://localhost:8000/api/crashReports/1",
         {
             parkinglot: selectedLot
         },
