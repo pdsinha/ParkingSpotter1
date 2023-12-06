@@ -31,7 +31,7 @@ export default function Registerpage(){
         })
         .catch((error) => {
             console.log(error.message);
-            seterror(true);
+            // seterror(true);
         });
         setcreatingUser(false);
         setusercreated(true);

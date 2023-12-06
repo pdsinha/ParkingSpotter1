@@ -1,15 +1,44 @@
 'use client';
 import { useState } from 'react';
 import './page.css'; 
+import axios from 'axios'
+
 
 export default function MapPage() {
     const lots = ['Lot A', 'Lot B', 'Lot C', 'Lot D', 'Lot E', 
     'Lot G', 'Lot H', 'Lot I', 'Lot J', 'Lot P', 'Lot T', 'Lot U'];
     const [selectedLot, setSelectedLot] = useState('');
+    const [number, setNumber] = useState('');
 
-    const handleLotClick = (lot) => {
+    const  handleLotClick = (lot) => {
         setSelectedLot(lot);
+        console.log(selectedLot)
+
+        
         // Additional logic
+         axios.get("http://localhost:8000/api/crashReports",
+        {
+            parkinglot: selectedLot
+        },
+        {
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+        }
+        )
+        .then((response) => {
+            console.log(response)
+            setNumber(response.data.result)
+    
+        })
+        .catch((error) => {
+            console.log(error.message);
+            // seterror(true);
+        });
+
+
+
+        
     };
 
     return (
@@ -31,7 +60,7 @@ export default function MapPage() {
 
             {selectedLot && (
                 <div className="text-center mt-4">
-                    Direct you to all reports of {selectedLot}.
+                    There have been {number} reports for this lot in the past 30 minutes.
                 </div>
             )}
 

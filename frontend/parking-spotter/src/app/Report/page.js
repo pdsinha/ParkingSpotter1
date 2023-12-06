@@ -6,9 +6,19 @@ import Link from 'next/link';
 export default function Report(){
 const [location, setlocation] = useState('');
 const [reportcomplete, setreportcomplete] = useState(false);
+const lots = ['Lot A', 'Lot B', 'Lot C', 'Lot D', 'Lot E', 
+    'Lot G', 'Lot H', 'Lot I', 'Lot J', 'Lot P', 'Lot T', 'Lot U'];
+
 function handleFormSubmit(e){
     e.preventDefault();
     setreportcomplete(false);
+    //input validation
+    if(!lots.includes(location)){
+        setreportcomplete(false);
+        alert("Please enter a valid parking lot location")
+        
+    }
+    else{
     axios
     .post(
         "http://localhost:8000/api/crashReports",
@@ -30,6 +40,7 @@ function handleFormSubmit(e){
     });
 
     setreportcomplete(true);
+     }
 
     
 
@@ -43,7 +54,7 @@ function handleFormSubmit(e){
                 <div class="my-4 text-center">
                     Report Created at {" "} {location}.<br/>
                     Now you can view the{' '}
-                    <Link class="underline" href={'/map'}>Map</Link>
+                    <Link class="underline" href={'/Map'}>Map</Link>
                 </div>
             )}
 

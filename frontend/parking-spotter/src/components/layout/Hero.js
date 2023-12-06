@@ -16,7 +16,7 @@ export default function Hero(){
                     <Link href={'/Report'} className= "flex items-center gap-2  bg-title text-white px-4 py-2 rounded-full">Place a Report
                     <Right/>
                     </Link>
-                    <Link href={'/map'} className="flex gap-2 py-2 text-gray-600 font-semibold">View Map
+                    <Link href={'/Map'} className="flex gap-2 py-2 text-gray-600 font-semibold">View Map
                     <Right/>
                     </Link>
                     
