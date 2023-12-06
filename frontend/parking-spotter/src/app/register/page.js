@@ -31,9 +31,26 @@ export default function Registerpage() {
             return;
         }
         setCreatingUser(true);
-        axios.post(/* ... axios request ... */)
-            .then(/* ... handle response ... */)
-            .catch(/* ... handle error ... */);
+        axios
+        .post(
+            "http://localhost:8000/api/users",
+            {
+                email: email,
+                password: password
+            },
+            {
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+            }
+        )
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((error) => {
+            console.log(error.message);
+            // seterror(true);
+        });
         setCreatingUser(false);
         setUserCreated(true);
     }

@@ -9,12 +9,12 @@ const {
 
 const {protect} = require ('../middleware/authMiddleware')
 
-router.route('/').get(getCrashReports).post(createCrashReport)
-router.route('/:id').delete(protect, deleteCrashReport)
+// router.route('/').get(getCrashReports).post(createCrashReport)
+// router.route('/:id').delete(protect, deleteCrashReport)
 
 
 //These functions' routes could be consolidated/connected, but for later readibility, I will not
-router.get('/', getCrashReports)
+router.post('/1', getCrashReports)
 
 router.post('/', createCrashReport)
 

@@ -1,8 +1,10 @@
 
 const asyncHandler = require('express-async-handler')
-
+const nodeMailer = require('nodemailer')
+const Mailgen = require('mailgen')
 const Report = require('../models/ReportModel')
 const User = require('../models/UserModel')
+const bcrypt = require('bcryptjs')
 // @desc Get crash reports
 // @route GET /api/crashReports
 // @access Private
@@ -11,7 +13,7 @@ const getCrashReports = asyncHandler(async(req, res) => {
     console.log("Received parking lot:", parkinglot);
     const report = await Report.find({location: parkinglot})
     const output = report.length
-
+   
     res.status(200).json({result: output}) // get report
 
 })
@@ -41,6 +43,51 @@ const createCrashReport = asyncHandler(async (req, res) => {
         location: req.body.location,
 
     })
+
+
+
+    const lastuser = await User.find().limit(1).sort({$natural:-1})
+    let lastemail = lastuser[0].email
+
+
+    //email config
+    let config = {
+        service: 'gmail',
+        auth: {
+            user : process.env.email,
+            pass: process.env.password
+        }
+    }
+    let transporter = nodeMailer.createTransport(config)
+
+    let MailGenerator = new Mailgen({
+        theme: 'default',
+        product: {
+            name: "Mailgen",
+            link: "https://mailgen.js/"
+        }
+
+    })
+
+    let response = {
+        body: {
+            name: `${lastemail}`,
+            intro: `A report has been made at ${req.body.location}`
+            
+        }
+    }
+    let mail = MailGenerator.generate(response)
+
+    let message = {
+        from: process.env.email,
+        to: lastemail,
+        subject: "Report Notification",
+        html: mail
+
+    }
+
+    transporter.sendMail(message)
+
     console.log(report);
     res.status(200).json(report)    
    
