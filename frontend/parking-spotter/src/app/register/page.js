@@ -14,7 +14,7 @@ export default function Registerpage() {
 
     // Email validation function
     const validateEmail = (email) => {
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const regex = /^[^\s@]+@[^\s@]+\.[c][o][m]$/;
         return regex.test(email);
     }
 
