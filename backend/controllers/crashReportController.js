@@ -7,10 +7,12 @@ const User = require('../models/UserModel')
 // @route GET /api/crashReports
 // @access Private
 const getCrashReports = asyncHandler(async(req, res) => {
-    const report = await Report.find()
+    const {parkinglot} = req.body
+    console.log("Received parking lot:", parkinglot);
+    const report = await Report.find({location: parkinglot})
+    const output = report.length
 
-
-    res.status(200).json(report) // get report
+    res.status(200).json({result: output}) // get report
 
 })
 
